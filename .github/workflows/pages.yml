@@ -1,5 +1,8 @@
 name: Deploy to GitHub Pages
 
+# Pages must be set to "GitHub Actions" once in the repo settings.
+# The workflow token cannot create the Pages site on its own.
+
 on:
   push:
     branches:

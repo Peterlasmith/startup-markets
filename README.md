@@ -2,9 +2,11 @@
 
 Public archive of Peter’s weekly **Bleeding-Edge Markets** briefs: what’s hot among top VCs, and who to network with.
 
-Live site: <https://peterlasmith.github.io/startup-markets/>
+Live site: <https://peter-startup-markets.surge.sh/>
 
-Each brief is one Markdown file. The site is a static Astro build published to GitHub Pages.
+Seed brief: <https://peter-startup-markets.surge.sh/briefs/2026-09-21/>
+
+Each brief is one Markdown file. The site is a static Astro build.
 
 ## Add next week’s brief
 
@@ -38,11 +40,18 @@ That’s the whole update. Do not add placeholder weeks — only briefs that wer
 
 ## Redeploy
 
-A push to `main` runs `.github/workflows/pages.yml`. GitHub Actions builds the site and deploys GitHub Pages. The new brief is first on the archive, with a permalink:
+A push to `main` runs `.github/workflows/pages.yml`. The workflow builds the site and deploys it to GitHub Pages. The new brief is first on the archive, with a permalink:
 
 `https://peterlasmith.github.io/startup-markets/briefs/YYYY-MM-DD/`
 
-The first deploy after a push usually finishes in a couple of minutes. No manual publish step.
+GitHub’s API token for this repo cannot turn Pages on by itself. One switch is required, once, by someone with admin on the repository:
+
+1. Open [Settings → Pages](https://github.com/Peterlasmith/startup-markets/settings/pages).
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+
+After that, every push to `main` publishes on its own. Until that switch is on, the site that is already live is:
+
+<https://peter-startup-markets.surge.sh/>
 
 ## Local preview
 
