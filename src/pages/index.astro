@@ -1,0 +1,169 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { briefPath, formatDate, getBriefs, searchText, tagCounts } from '../lib/briefs';
+
+const briefs = await getBriefs();
+const tags = tagCounts(briefs);
+const description =
+  'Archive of weekly Bleeding-Edge Markets briefs: what’s hot among top VCs, and who to network with.';
+---
+
+<Base title="Start Up Markets" description={description}>
+  <Header />
+  <main id="content" class="wrap archive">
+    <header class="archive-intro">
+      <p class="eyebrow">Weekly archive</p>
+      <h1>What’s hot, and who to talk to.</h1>
+      <p class="lede">
+        Peter’s desk briefs across top venture firms. Newest week first — scan the hot areas, then open the memo.
+      </p>
+    </header>
+
+    {
+      briefs.length === 0 ? (
+        <p class="empty-static">No briefs yet. Add a Markdown file under <code>content/briefs/</code>.</p>
+      ) : (
+        <div data-archive>
+          <form class="tools" role="search" data-search-form>
+            <div class="search-field">
+              <label for="q">Search</label>
+              <input
+                id="q"
+                name="q"
+                type="search"
+                placeholder="Search titles, tags, summaries"
+                autocomplete="off"
+                enterkeyhint="search"
+              />
+            </div>
+            <p class="count" data-count>
+              {briefs.length} {briefs.length === 1 ? 'brief' : 'briefs'}
+            </p>
+          </form>
+
+          <div class="tag-bar" role="group" aria-label="Filter by hot area">
+            <button type="button" class="tag" data-tag-button="" aria-pressed="true">
+              All
+            </button>
+            {tags.map(({ tag, count }) => (
+              <button type="button" class="tag" data-tag-button={tag} aria-pressed="false">
+                {tag}
+                <span class="tag-count">{count}</span>
+              </button>
+            ))}
+          </div>
+
+          <p class="empty" data-empty hidden>
+            Nothing in the archive matches that search or tag.
+          </p>
+
+          <ol class="brief-list">
+            {briefs.map((brief) => (
+              <li data-brief data-search={searchText(brief)} data-tags={JSON.stringify(brief.data.tags)}>
+                <article class="brief-row">
+                  <time datetime={brief.data.date}>{formatDate(brief.data.date, 'short')}</time>
+                  <div class="row-copy">
+                    <h2>
+                      <a href={briefPath(brief.id)}>{brief.data.title}</a>
+                    </h2>
+                    <p>{brief.data.summary}</p>
+                    <ul class="row-tags" aria-label="Hot areas">
+                      {brief.data.tags.map((tag) => (
+                        <li>
+                          <button type="button" class="tag tag-quiet" data-tag-button={tag}>
+                            {tag}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )
+    }
+  </main>
+  <Footer />
+</Base>
+
+<script>
+  const root = document.querySelector('[data-archive]');
+  if (root) {
+    const cards = [...root.querySelectorAll('[data-brief]')];
+    const form = root.querySelector('[data-search-form]');
+    const input = root.querySelector('input[type="search"]');
+    const buttons = [...root.querySelectorAll('[data-tag-button]')];
+    const empty = root.querySelector('[data-empty]');
+    const count = root.querySelector('[data-count]');
+    if (
+      form instanceof HTMLFormElement &&
+      input instanceof HTMLInputElement &&
+      empty instanceof HTMLElement &&
+      count instanceof HTMLElement
+    ) {
+    const params = new URLSearchParams(location.search);
+    let active = params.get('tag') || '';
+
+    const syncButtons = () => {
+      for (const button of buttons) {
+        const tag = button.getAttribute('data-tag-button') ?? '';
+        button.setAttribute('aria-pressed', tag === active ? 'true' : 'false');
+      }
+    };
+
+    const apply = () => {
+      const query = input.value.trim().toLowerCase();
+      let shown = 0;
+      for (const card of cards) {
+        const haystack = card.getAttribute('data-search') || '';
+        const tags = JSON.parse(card.getAttribute('data-tags') || '[]');
+        const matchesQuery = !query || haystack.includes(query);
+        const matchesTag = !active || tags.includes(active);
+        const visible = matchesQuery && matchesTag;
+        card.hidden = !visible;
+        if (visible) shown += 1;
+      }
+      empty.hidden = shown !== 0;
+      const noun = cards.length === 1 ? 'brief' : 'briefs';
+      count.textContent =
+        shown === cards.length ? `${cards.length} ${noun}` : `${shown} of ${cards.length}`;
+      const url = new URL(location.href);
+      if (query) url.searchParams.set('q', query);
+      else url.searchParams.delete('q');
+      if (active) url.searchParams.set('tag', active);
+      else url.searchParams.delete('tag');
+      history.replaceState(null, '', url);
+    };
+
+    input.value = params.get('q') || '';
+    syncButtons();
+    apply();
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      apply();
+    });
+    input.addEventListener('input', apply);
+    for (const button of buttons) {
+      button.addEventListener('click', () => {
+        const tag = button.getAttribute('data-tag-button') ?? '';
+        active = active === tag ? '' : tag;
+        syncButtons();
+        apply();
+      });
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== '/' || event.metaKey || event.ctrlKey || event.altKey) return;
+      const target = event.target;
+      if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement) return;
+      event.preventDefault();
+      input.focus();
+    });
+    }
+  }
+</script>

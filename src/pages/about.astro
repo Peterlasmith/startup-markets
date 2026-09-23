@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const description =
+  'Start Up Markets is a weekly Lightcone-style synthesis across top venture firms: what’s hot, and who to network with.';
+---
+
+<Base title="About" description={description}>
+  <Header />
+  <main id="content" class="wrap page">
+    <p class="eyebrow">About the desk</p>
+    <h1>A weekly read, not a link dump.</h1>
+    <div class="prose about-prose">
+      <p>
+        Start Up Markets stores Peter’s <em>Bleeding-Edge Markets</em> briefs. Each Monday note is a
+        Lightcone-style synthesis across top venture firms: where the frontier is heating up, which
+        theses partners just put in writing, and who is worth a conversation that week.
+      </p>
+      <p>
+        The audience is a fast scan. Know what’s hot and who to network with. Skip the deal
+        encyclopedia.
+      </p>
+      <h2>What every brief covers</h2>
+      <ul>
+        <li>Hot areas</li>
+        <li>Thesis watch</li>
+        <li>Who to network with</li>
+        <li>Capital signals</li>
+        <li>Cooling / crowded</li>
+        <li>Sources</li>
+      </ul>
+      <p>
+        The archive lists every week newest first. Tags are that week’s hot areas, so a theme can be
+        followed from the index. Search runs over titles, tags, and the one-line summary.
+      </p>
+      <p>
+        A new week is a single Markdown file in <code>content/briefs/</code>. The newest brief
+        sits at the top of the archive.
+      </p>
+    </div>
+  </main>
+  <Footer />
+</Base>

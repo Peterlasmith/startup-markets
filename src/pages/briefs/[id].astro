@@ -1,0 +1,91 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { briefPath, formatDate, getBriefs } from '../../lib/briefs';
+import { render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const briefs = await getBriefs();
+  return briefs.map((brief) => ({
+    params: { id: brief.id },
+    props: { brief },
+  }));
+}
+
+const { brief } = Astro.props;
+const { Content, headings } = await render(brief);
+const sections = headings.filter((heading) => heading.depth === 2);
+const briefs = await getBriefs();
+const index = briefs.findIndex((entry) => entry.id === brief.id);
+const newer = index > 0 ? briefs[index - 1] : undefined;
+const older = index >= 0 && index < briefs.length - 1 ? briefs[index + 1] : undefined;
+---
+
+<Base title={brief.data.title} description={brief.data.summary} ogType="article">
+  <Header />
+  <main id="content" class="wrap brief">
+    <article>
+      <header class="brief-header">
+        <p class="eyebrow">
+          <a href={import.meta.env.BASE_URL}>Archive</a>
+          <span aria-hidden="true"> / </span>
+          <time datetime={brief.data.date}>{formatDate(brief.data.date)}</time>
+        </p>
+        <h1>{brief.data.title}</h1>
+        <p class="dek">{brief.data.summary}</p>
+        <ul class="row-tags brief-tags" aria-label="Hot areas">
+          {
+            brief.data.tags.map((tag) => (
+              <li>
+                <a class="tag tag-quiet" href={`${import.meta.env.BASE_URL}?tag=${encodeURIComponent(tag)}`}>
+                  {tag}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        {
+          sections.length > 0 && (
+            <nav class="toc" aria-label="On this page">
+              <span class="toc-label">On this page</span>
+              <ol>
+                {sections.map((section) => (
+                  <li>
+                    <a href={`#${section.slug}`}>{section.text}</a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )
+        }
+      </header>
+      <div class="prose">
+        <Content />
+      </div>
+    </article>
+    {
+      (newer || older) && (
+        <nav class="brief-pager" aria-label="Other weeks">
+          {newer ? (
+            <a class="pager-link" href={briefPath(newer.id)}>
+              <span>Newer</span>
+              {newer.data.title}
+            </a>
+          ) : (
+            <span></span>
+          )}
+          {older ? (
+            <a class="pager-link pager-older" href={briefPath(older.id)}>
+              <span>Older</span>
+              {older.data.title}
+            </a>
+          ) : (
+            <span></span>
+          )}
+        </nav>
+      )
+    }
+  </main>
+  <Footer />
+</Base>
