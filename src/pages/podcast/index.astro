@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Subscribe from '../../components/Subscribe.astro';
+import EpisodePlayer from '../../components/EpisodePlayer.astro';
+import { briefPath, formatDate, getBriefs } from '../../lib/briefs';
+import { isEpisode } from '../../lib/podcast';
+
+const episodes = (await getBriefs()).filter(isEpisode);
+const description =
+  'Start Up Markets podcast: weekly bleeding-edge VC markets, what’s hot, and who to network with. Subscribe via RSS.';
+const cover = `${import.meta.env.BASE_URL}podcast-cover.png`;
+---
+
+<Base title="Podcast" description={description}>
+  <Header />
+  <main id="content" class="wrap page podcast">
+    <header class="podcast-hero">
+      <img src={cover} width="1400" height="1400" alt="Start Up Markets cover: weekly bleeding-edge VC markets." />
+      <div>
+        <p class="eyebrow">Podcast</p>
+        <h1>Start Up Markets</h1>
+        <p class="lede">
+          Weekly audio companion to the briefs. Newest episode first. The written memo on each brief
+          page is the transcript.
+        </p>
+      </div>
+    </header>
+
+    <Subscribe showDirectory={false} />
+
+    {
+      episodes.length === 0 ? (
+        <p class="empty-static">No episodes yet. Add audio frontmatter to a brief and an MP3 under public/audio/.</p>
+      ) : (
+        <ol class="episode-list">
+          {episodes.map((episode) => (
+            <li>
+              <article class="episode-card">
+                <header>
+                  <time datetime={episode.data.date}>{formatDate(episode.data.date)}</time>
+                  <h2>
+                    <a href={briefPath(episode.id)}>{episode.data.title}</a>
+                  </h2>
+                  <p>{episode.data.summary}</p>
+                </header>
+                <EpisodePlayer
+                  audio={episode.data.audio}
+                  durationSeconds={episode.data.durationSeconds}
+                  title={episode.data.title}
+                  anchor={`listen-${episode.id}`}
+                />
+                <p class="episode-transcript">
+                  <a href={briefPath(episode.id)}>Read the transcript</a>
+                </p>
+              </article>
+            </li>
+          ))}
+        </ol>
+      )
+    }
+  </main>
+  <Footer />
+</Base>

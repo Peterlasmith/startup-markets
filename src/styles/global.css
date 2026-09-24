@@ -378,6 +378,15 @@ input[type="search"]:focus {
   font-size: 1.05rem;
 }
 
+.row-listen {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+}
+
+.row-listen a {
+  color: var(--pine);
+}
+
 .row-tags {
   margin-top: 0.75rem;
 }
@@ -538,6 +547,193 @@ input[type="search"]:focus {
   border-bottom: 0;
 }
 
+.subscribe {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1.2rem 1.3rem 1.15rem;
+  background: var(--sheet);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+.subscribe h2,
+.episode-card h2 {
+  font-family: var(--serif);
+  font-weight: 560;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.subscribe h2 {
+  font-size: 1.7rem;
+}
+
+.subscribe p,
+.player-note,
+.episode-card header p {
+  margin: 0.45rem 0 0;
+  color: var(--muted);
+}
+
+.feed-field > p:first-child {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin: 0 0 0.4rem;
+}
+
+.feed-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.subscribe .feed-url {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  padding: 0.65rem 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.feed-url:focus {
+  border-color: var(--pine);
+  box-shadow: 0 0 0 3px rgba(30, 74, 67, 0.15);
+}
+
+.feed-row button {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  background: var(--pine);
+  color: #f6f1e8;
+  border: 0;
+  border-radius: 12px;
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+  align-self: stretch;
+}
+
+.feed-row button:hover {
+  background: var(--pine-deep);
+}
+
+.feed-links,
+.episode-actions,
+.episode-transcript {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+}
+
+.feed-links {
+  margin: 0.55rem 0 0;
+}
+
+.feed-links a,
+.episode-actions a,
+.episode-transcript a {
+  color: var(--pine);
+}
+
+.brief-header .episode-player {
+  margin-top: 1.25rem;
+}
+
+.episode-player {
+  margin: 0 0 1.5rem;
+  padding: 1rem 1.15rem 1.05rem;
+  background: var(--sheet);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  scroll-margin-top: 5.5rem;
+}
+
+.episode-player audio {
+  display: block;
+  width: 100%;
+  margin-top: 0.85rem;
+}
+
+.episode-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.15rem;
+  margin: 0.75rem 0 0;
+}
+
+.podcast-hero {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 1.25rem 1.4rem;
+  align-items: center;
+}
+
+.podcast-hero img {
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 12px;
+  display: block;
+}
+
+.podcast .subscribe {
+  margin-top: 1.75rem;
+}
+
+.episode-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.75rem 0 0;
+}
+
+.episode-card {
+  padding: 1.35rem 0 0.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.episode-card header time {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.86rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 0.35rem;
+}
+
+.episode-card h2 {
+  font-size: 1.55rem;
+}
+
+.episode-card h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.episode-card h2 a:hover {
+  color: var(--pine);
+}
+
+.episode-card .episode-player {
+  margin-top: 1rem;
+}
+
+.episode-transcript {
+  margin: -0.35rem 0 1.15rem;
+}
+
 .brief-pager {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -621,6 +817,17 @@ input[type="search"]:focus {
     font-size: 1.28rem;
   }
 
+  .subscribe,
+  .podcast-hero,
+  .feed-row {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+
+  .feed-row button {
+    width: 100%;
+  }
+
   .brief-pager {
     grid-template-columns: 1fr;
   }
@@ -645,7 +852,9 @@ input[type="search"]:focus {
   .site-footer,
   .toc,
   .brief-pager,
-  .skip {
+  .skip,
+  .subscribe,
+  .episode-player {
     display: none;
   }
 

@@ -2,7 +2,9 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Subscribe from '../components/Subscribe.astro';
 import { briefPath, formatDate, getBriefs, searchText, tagCounts } from '../lib/briefs';
+import { clockDuration, isEpisode } from '../lib/podcast';
 
 const briefs = await getBriefs();
 const tags = tagCounts(briefs);
@@ -20,6 +22,8 @@ const description =
         Peter’s desk briefs across top venture firms. Newest week first — scan the hot areas, then open the memo.
       </p>
     </header>
+
+    <Subscribe />
 
     {
       briefs.length === 0 ? (
@@ -69,6 +73,15 @@ const description =
                       <a href={briefPath(brief.id)}>{brief.data.title}</a>
                     </h2>
                     <p>{brief.data.summary}</p>
+                    {
+                      isEpisode(brief) && (
+                        <p class="row-listen">
+                          <a href={`${briefPath(brief.id)}#listen`}>
+                            Listen {clockDuration(brief.data.durationSeconds)}
+                          </a>
+                        </p>
+                      )
+                    }
                     <ul class="row-tags" aria-label="Hot areas">
                       {brief.data.tags.map((tag) => (
                         <li>

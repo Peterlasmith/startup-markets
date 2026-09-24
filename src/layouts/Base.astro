@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { feedUrl } from '../lib/podcast';
 
 interface Props {
   title: string;
@@ -10,6 +11,7 @@ interface Props {
 const { title, description, ogType = 'website' } = Astro.props;
 const pageTitle = title === 'Start Up Markets' ? title : `${title} · Start Up Markets`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const feed = feedUrl();
 ---
 
 <!doctype html>
@@ -20,6 +22,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="application/rss+xml" title="Start Up Markets" href={feed} />
     <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.svg`} type="image/svg+xml" />
     <meta name="theme-color" content="#f3efe7" />
     <meta property="og:title" content={pageTitle} />
