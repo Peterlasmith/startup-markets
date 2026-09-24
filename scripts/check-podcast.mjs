@@ -32,7 +32,7 @@ const needles = [
   `length="${bytes}"`,
   'type="audio/mpeg"',
   '<itunes:duration>6:35</itunes:duration>',
-  'Bleeding-Edge Markets — Week of 2026-09-15',
+  'Agent Security, Software Factories & the Watts Bottleneck',
 ];
 
 let failed = false;
