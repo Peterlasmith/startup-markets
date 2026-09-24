@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { feedUrl, podcastPagePath } from '../lib/podcast';
 
 const description =
   'Start Up Markets is a weekly Lightcone-style synthesis across top venture firms: what’s hot, and who to network with.';
@@ -38,6 +39,11 @@ const description =
       <p>
         A new week is a single Markdown file in <code>content/briefs/</code>. The newest brief
         sits at the top of the archive.
+      </p>
+      <p>
+        When that week also has an MP3, the brief page plays it and the same date shows up in the
+        <a href={podcastPagePath()}>podcast</a>. The memo stays the transcript.
+        Any podcast app can subscribe with the <a href={feedUrl()}>RSS feed</a>.
       </p>
     </div>
   </main>

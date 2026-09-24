@@ -2,7 +2,9 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import EpisodePlayer from '../../components/EpisodePlayer.astro';
 import { briefPath, formatDate, getBriefs } from '../../lib/briefs';
+import { isEpisode } from '../../lib/podcast';
 import { render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -45,6 +47,15 @@ const older = index >= 0 && index < briefs.length - 1 ? briefs[index + 1] : unde
             ))
           }
         </ul>
+        {
+          isEpisode(brief) && (
+            <EpisodePlayer
+              audio={brief.data.audio}
+              durationSeconds={brief.data.durationSeconds}
+              title={brief.data.title}
+            />
+          )
+        }
         {
           sections.length > 0 && (
             <nav class="toc" aria-label="On this page">

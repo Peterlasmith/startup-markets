@@ -1,0 +1,27 @@
+---
+import { audioHref, clockDuration, feedUrl } from '../lib/podcast';
+
+interface Props {
+  audio: string;
+  durationSeconds: number;
+  title: string;
+  anchor?: string;
+}
+
+const { audio, durationSeconds, title, anchor = 'listen' } = Astro.props;
+const src = audioHref(audio);
+const feed = feedUrl();
+const clock = clockDuration(durationSeconds);
+---
+
+<section class="episode-player" id={anchor} aria-label={`Listen: ${title}`}>
+  <p class="eyebrow">Podcast · {clock}</p>
+  <p class="player-note">Audio companion. The written brief is the transcript.</p>
+  <audio controls preload="metadata">
+    <source src={src} type="audio/mpeg" />
+  </audio>
+  <p class="episode-actions">
+    <a href={src} download>Download MP3</a>
+    <a href={feed}>RSS feed</a>
+  </p>
+</section>
