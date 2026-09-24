@@ -32,7 +32,7 @@ const needles = [
   `length="${bytes}"`,
   'type="audio/mpeg"',
   '<itunes:duration>6:35</itunes:duration>',
-  'Agent Security, Software Factories & the Watts Bottleneck',
+  'Agent Security, Software Factories &amp; the Watts Bottleneck',
 ];
 
 let failed = false;
