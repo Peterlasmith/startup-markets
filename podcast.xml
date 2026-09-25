@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Start Up Markets</title>
+    <description>Weekly bleeding-edge VC markets: what’s hot and who to network with.</description>
+    <language>en-us</language>
+    <link>https://peterlasmith.github.io/startup-markets/</link>
+    <atom:link href="https://peterlasmith.github.io/startup-markets/podcast.xml" rel="self" type="application/rss+xml"/>
+    <itunes:author>Peter Smith</itunes:author>
+    <itunes:owner>
+      <itunes:name>Peter Smith</itunes:name>
+    </itunes:owner>
+    <copyright>Start Up</copyright>
+    <itunes:explicit>false</itunes:explicit>
+    <itunes:type>episodic</itunes:type>
+    <itunes:category text="Business">
+      <itunes:category text="Entrepreneurship"/>
+    </itunes:category>
+    <itunes:image href="https://peterlasmith.github.io/startup-markets/podcast-cover.png"/>
+    <image>
+      <url>https://peterlasmith.github.io/startup-markets/podcast-cover.png</url>
+      <title>Start Up Markets</title>
+      <link>https://peterlasmith.github.io/startup-markets/</link>
+    </image>
+    <lastBuildDate>Fri, 25 Sep 2026 12:01:54 GMT</lastBuildDate>
+    <item>
+      <title>Island’s $6.4B Control Plane, SoftBank’s $11B OpenAI Bonds &amp; OpenEvidence at $15B</title>
+      <description>Bonus Friday: Island’s $400M Series F hits $6.4B as the agentic enterprise control plane; SoftBank prints ~$11.1B of high-yield notes to fund its final $10B OpenAI tranche; Business Insider reports OpenEvidence at $15B. Written brief (transcript): https://peterlasmith.github.io/startup-markets/briefs/2026-09-25/</description>
+      <itunes:summary>Bonus Friday: Island’s $400M Series F hits $6.4B as the agentic enterprise control plane; SoftBank prints ~$11.1B of high-yield notes to fund its final $10B OpenAI tranche; Business Insider reports OpenEvidence at $15B.</itunes:summary>
+      <content:encoded><![CDATA[<p>Bonus Friday: Island’s $400M Series F hits $6.4B as the agentic enterprise control plane; SoftBank prints ~$11.1B of high-yield notes to fund its final $10B OpenAI tranche; Business Insider reports OpenEvidence at $15B.</p><p>Written brief (transcript): <a href="https://peterlasmith.github.io/startup-markets/briefs/2026-09-25/">https://peterlasmith.github.io/startup-markets/briefs/2026-09-25/</a></p>]]></content:encoded>
+      <link>https://peterlasmith.github.io/startup-markets/briefs/2026-09-25/</link>
+      <guid isPermaLink="true">https://peterlasmith.github.io/startup-markets/briefs/2026-09-25/</guid>
+      <pubDate>Fri, 25 Sep 2026 15:00:00 GMT</pubDate>
+      <itunes:duration>10:34</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://peterlasmith.github.io/startup-markets/podcast-cover.png"/>
+      <enclosure url="https://peterlasmith.github.io/startup-markets/audio/2026-09-25.mp3" length="7604972" type="audio/mpeg"/>
+    </item>
+    <item>
+      <title>RL Data Labs, AI Employees &amp; Bessemer&apos;s $5.75B</title>
+      <description>Training-data labs hit mega valuations, agent “employees” attack SaaS budgets, Bessemer closed $5.75B for the full AI stack — and First Round’s Netflix playbook shows operators how to choose what AI should do. Written brief (transcript): https://peterlasmith.github.io/startup-markets/briefs/2026-09-24/</description>
+      <itunes:summary>Training-data labs hit mega valuations, agent “employees” attack SaaS budgets, Bessemer closed $5.75B for the full AI stack — and First Round’s Netflix playbook shows operators how to choose what AI should do.</itunes:summary>
+      <content:encoded><![CDATA[<p>Training-data labs hit mega valuations, agent “employees” attack SaaS budgets, Bessemer closed $5.75B for the full AI stack — and First Round’s Netflix playbook shows operators how to choose what AI should do.</p><p>Written brief (transcript): <a href="https://peterlasmith.github.io/startup-markets/briefs/2026-09-24/">https://peterlasmith.github.io/startup-markets/briefs/2026-09-24/</a></p>]]></content:encoded>
+      <link>https://peterlasmith.github.io/startup-markets/briefs/2026-09-24/</link>
+      <guid isPermaLink="true">https://peterlasmith.github.io/startup-markets/briefs/2026-09-24/</guid>
+      <pubDate>Thu, 24 Sep 2026 15:00:00 GMT</pubDate>
+      <itunes:duration>8:46</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://peterlasmith.github.io/startup-markets/podcast-cover.png"/>
+      <enclosure url="https://peterlasmith.github.io/startup-markets/audio/2026-09-24.mp3" length="3778148" type="audio/mpeg"/>
+    </item>
+    <item>
+      <title>Agent Security, Software Factories &amp; the Watts Bottleneck</title>
+      <description>Agent security, governed software factories, the watts bottleneck, and defense-and-space capital defined the week — and who to reach at Greylock, Sequoia, a16z, and Bessemer. Written brief (transcript): https://peterlasmith.github.io/startup-markets/briefs/2026-09-21/</description>
+      <itunes:summary>Agent security, governed software factories, the watts bottleneck, and defense-and-space capital defined the week — and who to reach at Greylock, Sequoia, a16z, and Bessemer.</itunes:summary>
+      <content:encoded><![CDATA[<p>Agent security, governed software factories, the watts bottleneck, and defense-and-space capital defined the week — and who to reach at Greylock, Sequoia, a16z, and Bessemer.</p><p>Written brief (transcript): <a href="https://peterlasmith.github.io/startup-markets/briefs/2026-09-21/">https://peterlasmith.github.io/startup-markets/briefs/2026-09-21/</a></p>]]></content:encoded>
+      <link>https://peterlasmith.github.io/startup-markets/briefs/2026-09-21/</link>
+      <guid isPermaLink="true">https://peterlasmith.github.io/startup-markets/briefs/2026-09-21/</guid>
+      <pubDate>Mon, 21 Sep 2026 15:00:00 GMT</pubDate>
+      <itunes:duration>6:35</itunes:duration>
+      <itunes:explicit>false</itunes:explicit>
+      <itunes:image href="https://peterlasmith.github.io/startup-markets/podcast-cover.png"/>
+      <enclosure url="https://peterlasmith.github.io/startup-markets/audio/2026-09-21.mp3" length="2372688" type="audio/mpeg"/>
+    </item>
+  </channel>
+</rss>
